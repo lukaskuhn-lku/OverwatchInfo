@@ -1,0 +1,53 @@
+{
+  "project_info": {
+    "project_number": "20364938134",
+    "firebase_url": "https://overwatch-community.firebaseio.com",
+    "project_id": "overwatch-community",
+    "storage_bucket": "overwatch-community.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:20364938134:android:6920c9a5a9fb931f",
+        "android_client_info": {
+          "package_name": "io.rocketfox.overwatchinfo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "20364938134-bit67ju8oacmnae46njmvfp4pqclnn2v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.rocketfox.overwatchinfo",
+            "certificate_hash": "38D2C6322701DB239654A1C29A023C53E7142B2D"
+          }
+        },
+        {
+          "client_id": "20364938134-ght0bo1u9g1l6d09tiicik5ahge8j798.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [{
+        "current_key": "AIzaSyBlpxNUL9-egmLiyTA4Eo62VObpb1wY5Kk"
+       }],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "20364938134-ght0bo1u9g1l6d09tiicik5ahge8j798.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
