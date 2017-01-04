@@ -42,8 +42,10 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = PatchNotesFragment.newInstance();
 
-        fragmentManager.beginTransaction().replace(R.id.content_main, fragment).commit();
+        setTitle("Patch notes");
 
+        navigationView.getMenu().getItem(0).setChecked(true);
+        fragmentManager.beginTransaction().replace(R.id.content_main, fragment).commit();
     }
 
     @Override
@@ -58,7 +60,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -81,8 +82,30 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+
+        Fragment fragment = null;
+        Class fragmentClass;
+
         int id = item.getItemId();
+
+       if(id == R.id.nav_heroesselect)
+           fragmentClass = HeroSelectFragment.class;
+        else if(id == R.id.nav_patchnotes)
+           fragmentClass = PatchNotesFragment.class;
+        else
+           fragmentClass = PatchNotesFragment.class;
+
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_main, fragment).commit();
+
+        item.setChecked(true);
+        setTitle(item.getTitle());
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

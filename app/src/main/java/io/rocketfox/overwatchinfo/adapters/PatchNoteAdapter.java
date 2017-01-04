@@ -2,6 +2,7 @@ package io.rocketfox.overwatchinfo.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,18 +44,19 @@ public class PatchNoteAdapter extends RecyclerView.Adapter<PatchNoteAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
         holder.mTextViewStatus.setText(notes.get(position).status);
         holder.mTextViewVersion.setText(notes.get(position).patchVersion);
 
-        holder.mTextViewDetail.setText(Html.fromHtml(notes.get(position).detail));
+        String fullText = notes.get(position).detail;
+
+        holder.mTextViewDetail.setText(Html.fromHtml(fullText));
+        holder.mTextViewDetail.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     @Override
     public int getItemCount() {
         return notes.size();
     }
-
 
     public PatchNoteAdapter(ArrayList<PatchNote> notes) {
         this.notes = notes;
