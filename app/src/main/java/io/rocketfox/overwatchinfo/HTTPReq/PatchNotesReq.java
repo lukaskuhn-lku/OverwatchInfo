@@ -15,9 +15,9 @@ import io.rocketfox.overwatchinfo.Objects.PatchNotes;
 
 public class PatchNotesReq extends AsyncTask<Void, Void, PatchNotes> {
 
-    public AsyncResponse delegate = null;
+    public AsyncResponsePatchNotes delegate = null;
 
-    public PatchNotesReq(AsyncResponse delegate) {
+    public PatchNotesReq(AsyncResponsePatchNotes delegate) {
         this.delegate = delegate;
     }
 
@@ -41,8 +41,8 @@ public class PatchNotesReq extends AsyncTask<Void, Void, PatchNotes> {
 
     @Override
     protected void onPostExecute(PatchNotes notes) {
-        if (delegate != null)
-            delegate.onLoadingDone(notes);
+       // if (delegate != null)
+       //     delegate.onLoadingDone(notes);
     }
 
 }

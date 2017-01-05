@@ -10,5 +10,13 @@ import java.util.ArrayList;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class HeroData {
-    public ArrayList<Hero> data;
+    private ArrayList<HeroItem> data;
+
+    public ArrayList<HeroItem> getData() {
+        return data;
+    }
+
+    public void setData(ArrayList<HeroItem> data) {
+        this.data = data;
+    }
 }

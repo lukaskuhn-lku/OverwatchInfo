@@ -9,12 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+
+import java.util.ArrayList;
+
+import io.rocketfox.overwatchinfo.HTTPReq.AsyncResponseHeroData;
 import io.rocketfox.overwatchinfo.HTTPReq.HeroReq;
 import io.rocketfox.overwatchinfo.Objects.HeroData;
+import io.rocketfox.overwatchinfo.Objects.HeroItem;
+import io.rocketfox.overwatchinfo.adapters.HeroSelectAdapter;
 
 
-
-public class HeroSelectFragment extends Fragment {
+public class HeroSelectFragment extends Fragment implements AsyncResponseHeroData {
 
     private HeroData heroData;
 
@@ -37,17 +42,11 @@ public class HeroSelectFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
-        View v = getView();
-
         try {
-            heroData = new HeroReq().execute().get();
+           new HeroReq(this).execute();
         }catch(Exception e){
             e.printStackTrace();
         }
-
-        ListView heroSelect = (ListView) v.findViewById(R.id.list_view_heroes);
-
-
 
     }
 
@@ -67,4 +66,20 @@ public class HeroSelectFragment extends Fragment {
         super.onDetach();
     }
 
+    @Override
+    public void onLoadingDone(HeroData data) {
+        heroData = data;
+        updateUI(heroData);
+    }
+
+    private void updateUI(HeroData heroData) {
+        View v = getView();
+        ListView heroSelect = (ListView) v.findViewById(R.id.list_view_heroes);
+
+        ArrayList<HeroItem> items = heroData.getData();
+        HeroItem[] array = items.toArray(new HeroItem[items.size()]);
+
+        heroSelect.setAdapter(new HeroSelectAdapter(getContext(),array));
+
+    }
 }

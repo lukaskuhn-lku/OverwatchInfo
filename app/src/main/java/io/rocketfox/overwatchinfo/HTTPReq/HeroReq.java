@@ -14,9 +14,9 @@ import io.rocketfox.overwatchinfo.Objects.HeroData;
 
 public class HeroReq extends AsyncTask<Void, Void, HeroData> {
 
-    public AsyncResponse delegate = null;
+    public AsyncResponseHeroData delegate = null;
 
-    public HeroReq(AsyncResponse delegate) {
+    public HeroReq(AsyncResponseHeroData delegate) {
         this.delegate = delegate;
     }
 
@@ -27,11 +27,11 @@ public class HeroReq extends AsyncTask<Void, Void, HeroData> {
     @Override
     protected HeroData doInBackground(Void... params) {
         try {
-            final String url = "https://api.lootbox.eu/patch_notes";
+            final String url = "https://overwatch-api.net/api/v1/hero";
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-            HeroData heroData = restTemplate.getForObject(url, HeroData.class);
-            return heroData;
+            HeroData heros = restTemplate.getForObject(url, HeroData.class);
+            return heros;
         } catch (Exception e) {
             Log.e("HttpRequest", e.getMessage(), e);
         }
@@ -39,9 +39,9 @@ public class HeroReq extends AsyncTask<Void, Void, HeroData> {
     }
 
     @Override
-    protected void onPostExecute(HeroData heroData) {
+    protected void onPostExecute(HeroData heros) {
         if (delegate != null)
-            delegate.onLoadingDone(heroData);
+            delegate.onLoadingDone(heros);
     }
 
 }
