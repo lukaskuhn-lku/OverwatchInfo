@@ -9,15 +9,16 @@
         android:layout_height="100dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             app:srcCompat="@mipmap/ic_launcher"
             android:id="@+id/heroselect_avatar"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginLeft="14dp"
-            android:layout_marginStart="14dp" />
+            android:layout_marginStart="14dp"
+            android:scaleType="fitCenter"
+            android:layout_width="60dp" />
 
         <TextView
             android:text="TextView"

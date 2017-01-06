@@ -13,13 +13,14 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.rocketfox.overwatchinfo.HTTPReq.AsyncResponsePatchNotes;
 import io.rocketfox.overwatchinfo.HTTPReq.PatchNotesReq;
 import io.rocketfox.overwatchinfo.Objects.PatchNote;
 import io.rocketfox.overwatchinfo.Objects.PatchNotes;
 import io.rocketfox.overwatchinfo.adapters.PatchNoteAdapter;
 
 
-public class PatchNotesFragment extends Fragment {
+public class PatchNotesFragment extends Fragment implements AsyncResponsePatchNotes{
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -43,30 +44,13 @@ public class PatchNotesFragment extends Fragment {
 
         View v = getView();
 
+        new PatchNotesReq(this).execute();
+
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_notes);
         mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
-
-        ArrayList<PatchNote> notes = LoadPatchNotes();
-
-        mAdapter = new PatchNoteAdapter(notes);
-        mRecyclerView.setAdapter(mAdapter);
-    }
-
-    private ArrayList<PatchNote> LoadPatchNotes() {
-        try {
-            PatchNotes restDump = new PatchNotesReq().execute().get();
-            ArrayList<PatchNote> notes = new ArrayList<PatchNote>();
-            for(PatchNote note:restDump.patchNotes){
-                notes.add(note);
-            }
-            return notes;
-        }catch(Exception e){
-
-        }
-        return null;
     }
 
     @Override
@@ -86,4 +70,15 @@ public class PatchNotesFragment extends Fragment {
     }
 
 
+    @Override
+    public void onLoadingDone(PatchNotes notes) {
+        ArrayList<PatchNote> noteList = new ArrayList<PatchNote>();
+
+        for(PatchNote note:notes.patchNotes){
+            noteList.add(note);
+        }
+
+        mAdapter = new PatchNoteAdapter(noteList);
+        mRecyclerView.setAdapter(mAdapter);
+    }
 }
