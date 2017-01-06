@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="io.rocketfox.overwatchinfo.HeroSelectFragment"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:id="@+id/content_selecthero">
 
     <!-- TODO: Update blank fragment layout -->
 

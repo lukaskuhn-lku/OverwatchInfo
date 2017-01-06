@@ -57,6 +57,7 @@ public class HeroSelectAdapter extends ArrayAdapter<HeroItem> {
         return rowView;
     }
 
+
     private static Bitmap getBitmapFromAsset(Context context, String filePath) {
         AssetManager assetManager = context.getAssets();
 
