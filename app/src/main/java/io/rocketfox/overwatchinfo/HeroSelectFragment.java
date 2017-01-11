@@ -1,6 +1,7 @@
 package io.rocketfox.overwatchinfo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,10 +23,11 @@ import io.rocketfox.overwatchinfo.Objects.HeroItem;
 import io.rocketfox.overwatchinfo.adapters.HeroSelectAdapter;
 
 
-public class HeroSelectFragment extends Fragment implements AsyncResponseHeroData {
+public class HeroSelectFragment extends Fragment implements AsyncResponseHeroData, AdapterView.OnItemClickListener {
 
     private HeroData heroData;
     private Context context;
+    private ListView heroSelect;
 
     public HeroSelectFragment() {
     }
@@ -38,13 +40,14 @@ public class HeroSelectFragment extends Fragment implements AsyncResponseHeroDat
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-
-        //TODO: LoadingBar
+        heroSelect = (ListView) getView().findViewById(R.id.list_view_heroes);
         try {
            new HeroReq(this).execute();
         }catch(Exception e){
@@ -77,24 +80,20 @@ public class HeroSelectFragment extends Fragment implements AsyncResponseHeroDat
 
     private void updateUI(HeroData heroData) {
         View v = getView();
-        final ListView heroSelect = (ListView) v.findViewById(R.id.list_view_heroes);
 
         ArrayList<HeroItem> items = heroData.getData();
         HeroItem[] array = items.toArray(new HeroItem[items.size()]);
 
         heroSelect.setAdapter(new HeroSelectAdapter(getContext(),array));
+        heroSelect.setOnItemClickListener(this);
+    }
 
-        heroSelect.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Log.d("Test", "Click");
-               HeroItem heroItem = (HeroItem) heroSelect.getItemAtPosition(position);
-                int id = heroItem.id;
-                FragmentManager fragmentManager = getFragmentManager();
-                Fragment fragment = HeroDetailFragment.newInstance(String.valueOf(id));
-                fragmentManager.beginTransaction().replace(R.id.content_selecthero, fragment, "SELECT").addToBackStack(null).commit();
-            }
-        });
-
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        HeroItem heroItem = (HeroItem) heroSelect.getItemAtPosition(i);
+        int id = heroItem.id;
+        Intent intent = new Intent(getContext(), HeroDetail.class);
+        intent.putExtra("HEROID", id);
+        startActivity(intent);
     }
 }

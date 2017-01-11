@@ -44,7 +44,11 @@ public class PatchNotesFragment extends Fragment implements AsyncResponsePatchNo
 
         View v = getView();
 
-        new PatchNotesReq(this).execute();
+        try {
+            new PatchNotesReq(this).execute();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_notes);
         mRecyclerView.setHasFixedSize(true);
@@ -71,8 +75,8 @@ public class PatchNotesFragment extends Fragment implements AsyncResponsePatchNo
 
 
     @Override
-    public void onLoadingDone(PatchNotes notes) {
-        ArrayList<PatchNote> noteList = new ArrayList<PatchNote>();
+    public void onLoadingNotesDone(PatchNotes notes) {
+        ArrayList<PatchNote> noteList = new ArrayList<>();
 
         for(PatchNote note:notes.patchNotes){
             noteList.add(note);

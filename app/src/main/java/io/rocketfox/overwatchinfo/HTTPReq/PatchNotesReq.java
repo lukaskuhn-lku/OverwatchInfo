@@ -41,8 +41,8 @@ public class PatchNotesReq extends AsyncTask<Void, Void, PatchNotes> {
 
     @Override
     protected void onPostExecute(PatchNotes notes) {
-       // if (delegate != null)
-       //     delegate.onLoadingDone(notes);
+       if (delegate != null)
+           delegate.onLoadingNotesDone(notes);
     }
 
 }

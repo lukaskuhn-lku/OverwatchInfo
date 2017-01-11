@@ -22,9 +22,6 @@ import io.rocketfox.overwatchinfo.Objects.HeroData;
 import io.rocketfox.overwatchinfo.Objects.HeroItem;
 import io.rocketfox.overwatchinfo.R;
 
-/**
- * Created by Lukas on 05.01.2017.
- */
 public class HeroSelectAdapter extends ArrayAdapter<HeroItem> {
 
     private final Context context;

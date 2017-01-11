@@ -6,28 +6,32 @@ import android.util.Log;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import io.rocketfox.overwatchinfo.Objects.Hero;
 import io.rocketfox.overwatchinfo.Objects.HeroData;
 
-public class HeroReq extends AsyncTask<Void, Void, HeroData> {
+public class HeroDetailReq extends AsyncTask<Void, Void, Hero> {
 
-    public AsyncResponseHeroData delegate = null;
+    public AsyncResponseHeroDetail delegate = null;
+    private int id;
 
-    public HeroReq(AsyncResponseHeroData delegate) {
+    public HeroDetailReq(AsyncResponseHeroDetail delegate, int id) {
         this.delegate = delegate;
+        this.id = id;
     }
 
-    public HeroReq() {
+    public HeroDetailReq(int id) {
+        this.id = id;
         this.delegate = null;
     }
 
     @Override
-    protected HeroData doInBackground(Void... params) {
+    protected Hero doInBackground(Void... params) {
         try {
-            final String url = "https://overwatch-api.net/api/v1/hero";
+            final String url = "https://overwatch-api.net/api/v1/hero/" + id;
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-            HeroData heroes = restTemplate.getForObject(url, HeroData.class);
-            return heroes;
+            Hero hero = restTemplate.getForObject(url, Hero.class);
+            return hero;
         } catch (Exception e) {
             Log.e("HttpRequest", e.getMessage(), e);
         }
@@ -35,10 +39,11 @@ public class HeroReq extends AsyncTask<Void, Void, HeroData> {
     }
 
     @Override
-    protected void onPostExecute(HeroData heroes) {
+    protected void onPostExecute(Hero hero) {
         if (delegate != null)
-            delegate.onLoadingDone(heroes);
+            delegate.onLoadingDone(hero);
     }
 
 }
+
 
