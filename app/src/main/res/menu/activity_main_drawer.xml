@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group >
-        <item android:title="Patch notes"
-            android:id="@+id/nav_patchnotes"
-            android:icon="@drawable/loudspeaker" />
         <item android:title="Heroes"
             android:id="@+id/nav_heroesselect"
             android:icon="@drawable/user" />
+        <item android:title="Patch Notes"
+            android:id="@+id/nav_patchnotes"
+            android:icon="@drawable/loudspeaker" />
     </group>
 </menu>

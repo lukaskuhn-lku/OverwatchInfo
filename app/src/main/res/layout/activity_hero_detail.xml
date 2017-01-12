@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_hero_detail"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="1000dp"
     android:paddingBottom="0dp"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
@@ -13,13 +13,20 @@
     tools:context="io.rocketfox.overwatchinfo.HeroDetail"
     android:background="@color/colorPrimary">
 
-    <LinearLayout
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/content_linear">
+        android:id="@+id/content_linearDetail">
 
-        <RelativeLayout
+
+
+            <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="125dp"
             android:id="@+id/identifierCard">
@@ -46,7 +53,8 @@
                 android:layout_centerHorizontal="true"
                 android:textAlignment="viewStart" />
 
-        </RelativeLayout>
+            </RelativeLayout>
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -96,6 +104,8 @@
             </LinearLayout>
         </RelativeLayout>
 
+
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:background="@color/colorCardHeader"
@@ -125,7 +135,25 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="5dp" />
+
         </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/cardview_shadow_start_color"
+                android:padding="5dp">
+
+                <TextView
+                    android:text="Support"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtRoleName"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="25sp"
+                    android:textColor="@color/colorAccent" />
+            </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -178,23 +206,40 @@
                 android:layout_below="@+id/txtHeroRealNameDetail"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
+
         </RelativeLayout>
+
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/cardview_shadow_start_color">
+            android:layout_below="@+id/content_linearDetail">
 
-            <TextView
-                android:text="Support"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtRoleName"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:textSize="25sp"
-                android:textColor="@color/colorAccent" />
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/abilityList" />
         </RelativeLayout>
 
-    </LinearLayout>
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/loadingBarDetail"
+            android:layout_gravity="center_vertical"
+            android:progressDrawable="@drawable/circular_progress_bar"
+            android:indeterminate="true"
+            android:visibility="gone"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="200dp"
+            tools:visibility="gone" />
+
+    </RelativeLayout>
 </ScrollView>

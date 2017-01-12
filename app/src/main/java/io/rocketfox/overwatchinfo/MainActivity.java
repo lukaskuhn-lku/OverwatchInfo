@@ -1,5 +1,6 @@
 package io.rocketfox.overwatchinfo;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import io.rocketfox.overwatchinfo.Objects.HeroItem;
 
@@ -41,10 +43,15 @@ public class MainActivity extends AppCompatActivity
 
         drawer.setBackgroundResource(R.color.colorPrimary);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment fragment = PatchNotesFragment.newInstance();
+        View headerNav = navigationView.getHeaderView(0);
+        TextView txtMenu = (TextView) headerNav.findViewById(R.id.navDrawer_HeaderText);
+        Typeface overwatchfontCursive = Typeface.createFromAsset(getAssets(), "fonts/big_noodle_titling_oblique.ttf");
+        txtMenu.setTypeface(overwatchfontCursive);
 
-        setTitle("Patch notes");
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fragment = HeroSelectFragment.newInstance();
+
+        setTitle("Heroes");
 
         navigationView.getMenu().getItem(0).setChecked(true);
         fragmentManager.beginTransaction().replace(R.id.content_main, fragment).commit();

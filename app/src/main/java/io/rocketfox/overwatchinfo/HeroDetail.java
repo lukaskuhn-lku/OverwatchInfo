@@ -11,27 +11,41 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import io.rocketfox.overwatchinfo.HTTPReq.AsyncResponseHeroDetail;
 import io.rocketfox.overwatchinfo.HTTPReq.HeroDetailReq;
 import io.rocketfox.overwatchinfo.Objects.Hero;
+import io.rocketfox.overwatchinfo.Objects.HeroExtra.Ability;
+import io.rocketfox.overwatchinfo.Objects.HeroItem;
+import io.rocketfox.overwatchinfo.adapters.HeroAbilityAdapter;
+import io.rocketfox.overwatchinfo.adapters.HeroSelectAdapter;
 
 public class HeroDetail extends AppCompatActivity implements AsyncResponseHeroDetail{
-    LinearLayout lcontent;
+    LinearLayout lcontent1;
+
+    ProgressBar loadingBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hero_detail);
         Intent intent = getIntent();
         int heroID = intent.getIntExtra("HEROID", 1);
+        lcontent1 = (LinearLayout) findViewById(R.id.content_linearDetail);
+        lcontent1.setVisibility(View.GONE);
 
-        lcontent = (LinearLayout) findViewById(R.id.content_linear);
-        lcontent.setVisibility(View.GONE);
+
+        loadingBar = (ProgressBar) findViewById(R.id.loadingBarDetail);
+           loadingBar.setVisibility(View.VISIBLE);
+
         new HeroDetailReq(this, heroID).execute();
 
 
@@ -44,13 +58,21 @@ public class HeroDetail extends AppCompatActivity implements AsyncResponseHeroDe
     }
 
     private void updateUI(Hero hero) {
-        lcontent.setVisibility(View.VISIBLE);
+        loadingBar.setVisibility(View.GONE);
+        lcontent1.setVisibility(View.VISIBLE);
         setTitle("Hero Details: " + hero.name);
         TextView txtName = (TextView) findViewById(R.id.txtHeroNameDetail);
         txtName.setText(hero.name);
 
         TextView descriptionTag = (TextView) findViewById(R.id.txtDescriptionTagDetail);
         TextView informationsTag = (TextView) findViewById(R.id.txtInformationsTagDetail);
+
+        ArrayList<Ability> items = hero.abilities;
+        Ability[] array = items.toArray(new Ability[items.size()]);
+
+        ListView abilityList = (ListView) findViewById(R.id.abilityList);
+
+        abilityList.setAdapter(new HeroAbilityAdapter(this, array));
 
         Typeface overwatchfont = Typeface.createFromAsset(getAssets(), "fonts/big_noodle_titling.ttf");
         txtName.setTypeface(overwatchfont);

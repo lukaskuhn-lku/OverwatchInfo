@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ public class PatchNotesFragment extends Fragment implements AsyncResponsePatchNo
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private ProgressBar loadingBar;
 
     public PatchNotesFragment() {}
 
@@ -36,15 +38,21 @@ public class PatchNotesFragment extends Fragment implements AsyncResponsePatchNo
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActivity().setTitle("Patch Notes & Updates");
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
+
+
         View v = getView();
 
+        loadingBar = (ProgressBar) v.findViewById(R.id.loadingBarPatchNotes);
+
         try {
+            loadingBar.setVisibility(View.VISIBLE);
             new PatchNotesReq(this).execute();
         }catch(Exception e){
             e.printStackTrace();
@@ -76,6 +84,7 @@ public class PatchNotesFragment extends Fragment implements AsyncResponsePatchNo
 
     @Override
     public void onLoadingNotesDone(PatchNotes notes) {
+        loadingBar.setVisibility(View.GONE);
         ArrayList<PatchNote> noteList = new ArrayList<>();
 
         for(PatchNote note:notes.patchNotes){

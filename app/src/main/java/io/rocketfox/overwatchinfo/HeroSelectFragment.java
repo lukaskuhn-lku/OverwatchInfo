@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 
 import java.util.ArrayList;
@@ -28,11 +29,11 @@ public class HeroSelectFragment extends Fragment implements AsyncResponseHeroDat
     private HeroData heroData;
     private Context context;
     private ListView heroSelect;
-
+    ProgressBar loadingBar;
     public HeroSelectFragment() {
     }
 
-    public static HeroSelectFragment newInstance(String param1, String param2) {
+    public static HeroSelectFragment newInstance() {
         HeroSelectFragment fragment = new HeroSelectFragment();
         return fragment;
     }
@@ -48,7 +49,9 @@ public class HeroSelectFragment extends Fragment implements AsyncResponseHeroDat
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         heroSelect = (ListView) getView().findViewById(R.id.list_view_heroes);
+        loadingBar = (ProgressBar) getView().findViewById(R.id.loadingBarSelect);
         try {
+            loadingBar.setVisibility(View.VISIBLE);
            new HeroReq(this).execute();
         }catch(Exception e){
             e.printStackTrace();
@@ -74,6 +77,7 @@ public class HeroSelectFragment extends Fragment implements AsyncResponseHeroDat
 
     @Override
     public void onLoadingDone(HeroData data) {
+        loadingBar.setVisibility(View.GONE);
         heroData = data;
         updateUI(heroData);
     }

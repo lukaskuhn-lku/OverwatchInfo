@@ -11,13 +11,13 @@
         android:layout_width="match_parent"
         android:foreground="?android:attr/selectableItemBackground"
         card_view:cardCornerRadius="8dp"
-        card_view:cardElevation="4dp"
+        card_view:cardElevation="8dp"
         card_view:contentPadding="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="12dp"
         >
 
         <LinearLayout
@@ -39,7 +39,7 @@
                     android:id="@+id/cardNotes_textViewStatus"
                     android:textAllCaps="true"
                     android:textStyle="normal|bold"
-                    android:textColor="@android:color/background_light" />
+                    android:textColor="@color/colorAccent" />
 
                 <TextView
                     android:text="1.6.9"
@@ -49,14 +49,15 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
-                    android:textColor="@color/colorWhite" />
+                    android:textColor="@color/colorAccent" />
 
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:background="@color/colorCardContent">
 
                 <TextView
                     android:text="TextView"
@@ -65,7 +66,9 @@
                     android:id="@+id/cardNotes_textViewDetail"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:textColorLink="@android:color/background_light"
+                    android:textColor="@color/colorWhite" />
             </RelativeLayout>
 
         </LinearLayout>

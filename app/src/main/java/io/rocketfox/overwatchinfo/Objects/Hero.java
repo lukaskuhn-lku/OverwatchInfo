@@ -2,6 +2,7 @@ package io.rocketfox.overwatchinfo.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.rocketfox.overwatchinfo.Objects.HeroExtra.Ability;
@@ -22,5 +23,5 @@ public class Hero {
     public String base_of_operations;
     public int difficulty;
     public Role role;
-    public List<Ability> abilities;
+    public ArrayList<Ability> abilities;
 }

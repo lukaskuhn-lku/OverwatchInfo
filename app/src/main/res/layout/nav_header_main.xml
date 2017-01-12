@@ -13,10 +13,10 @@
     android:layout_height="100dp">
 
     <TextView
-        android:text="More"
+        android:text="Menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/navDrawer_HeaderText"
-        android:textSize="@dimen/headertext"
+        android:textSize="38sp"
         android:textColor="@android:color/background_light" />
 </LinearLayout>
