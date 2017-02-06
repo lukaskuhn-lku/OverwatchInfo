@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "20364938134-hadvmd4neqfvfrmih5hum4c1ipor94jf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.rocketfox.overwatchinfo",
+            "certificate_hash": "91A4076A88282B55C1B75135B505AD3570826E64"
+          }
+        },
+        {
           "client_id": "20364938134-bit67ju8oacmnae46njmvfp4pqclnn2v.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -27,9 +35,11 @@
           "client_type": 3
         }
       ],
-      "api_key": [{
-        "current_key": "AIzaSyBlpxNUL9-egmLiyTA4Eo62VObpb1wY5Kk"
-       }],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlpxNUL9-egmLiyTA4Eo62VObpb1wY5Kk"
+        }
+      ],
       "services": {
         "analytics_service": {
           "status": 1

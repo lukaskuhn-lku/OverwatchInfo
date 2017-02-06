@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <group >
-        <item android:title="Heroes"
-            android:id="@+id/nav_heroesselect"
-            android:icon="@drawable/user" />
-        <item android:title="Patch Notes"
-            android:id="@+id/nav_patchnotes"
-            android:icon="@drawable/loudspeaker" />
+        <item android:title="News"
+            android:id="@+id/navNews"
+            android:icon="@drawable/newspaper"
+            android:checkable="true" />
     </group>
+    <item android:title="Informations"
+        android:id="@+id/Informations">
+        <menu >
+            <group android:checkableBehavior="single">
+                <item android:title="Heroes"
+                    android:id="@+id/nav_heroesselect"
+                    android:icon="@drawable/heroes"
+                    android:checkable="true" />
+                <item android:title="Maps"
+                    android:id="@+id/nav_mapselect"
+                    android:icon="@drawable/map" />
+                <item android:title="Patch Notes"
+                    android:id="@+id/nav_patchnotes"
+                    android:icon="@drawable/loudspeaker"
+                    android:checkable="true" />
+            </group>
+        </menu>
+    </item>
 </menu>

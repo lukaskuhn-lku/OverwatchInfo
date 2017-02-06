@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_hero_detail"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:fillViewport="true"
+    android:paddingTop="0dp"
+    tools:context="io.rocketfox.overwatchinfo.HeroDetail"
+    android:background="@color/colorPrimary">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/content_linearDetail"
+            android:nestedScrollingEnabled="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="125dp"
+                android:id="@+id/identifierCard">
+
+                <ImageView
+                    app:srcCompat="@drawable/ana"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginStart="28dp"
+                    android:id="@+id/imgHeroAvatarDetail"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" />
+
+                <TextView
+                    android:text="Ana"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtHeroNameDetail"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="38sp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:textAlignment="viewStart" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/cardview_shadow_start_color">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="12dp"
+                    android:paddingLeft="100dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/hospital"
+                        android:id="@+id/imgHealthIcon" />
+
+                    <TextView
+                        android:text="200"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtHeroHealthDetail"
+                        android:textSize="22sp"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginLeft="6dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/shield"
+                        android:id="@+id/imgShieldIcon"
+                        android:layout_marginLeft="16dp" />
+
+                    <TextView
+                        android:text="0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtHeroShieldDetail"
+                        android:textSize="22sp"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginLeft="6dp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@color/colorCardHeader"
+                android:padding="10dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtDescriptionTagDetail"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:text="Ana’s versatile arsenal allows her to affect heroes all over the battlefield. Her Biotic Rifle rounds and Biotic Grenades heal allies and damage or impair enemies; her sidearm tranquilizes key targets, and Nano Boost gives one of her comrades a considerable increase in power."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtHeroDescriptionDetail"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:textAlignment="textStart"
+                    android:layout_below="@+id/txtDescriptionTagDetail"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="5dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/cardview_shadow_start_color"
+                android:padding="5dp">
+
+                <TextView
+                    android:text="Support"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtRoleName"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="25sp"
+                    android:textColor="@color/colorAccent" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:text="Age: 60"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp"
+                    android:id="@+id/txtHeroAgeDetail"
+                    android:layout_below="@+id/txtInformationsTagDetail"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textColorLink="@android:color/white"
+                    android:textColor="@color/colorWhite" />
+
+                <TextView
+                    android:text="Real Name: Ana Amari"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtHeroRealNameDetail"
+                    android:textColorLink="@android:color/white"
+                    android:textColor="@color/colorWhite"
+                    android:layout_below="@+id/txtHeroAgeDetail"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="11dp" />
+
+                <TextView
+                    android:text="Informations"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtInformationsTagDetail"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:text="Base of operations: Cairo, Egypt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtHeroBaseDetail"
+                    android:textColorLink="@android:color/white"
+                    android:textColor="@color/colorWhite"
+                    android:layout_marginTop="12dp"
+                    android:layout_below="@+id/txtHeroRealNameDetail"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/cardview_shadow_start_color"
+                android:padding="5dp">
+
+                <Button
+                    android:text="Abilites"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnAbilitiesDetail"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@color/colorCardContent"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/loadingBarDetail"
+            android:layout_gravity="center_vertical"
+            android:progressDrawable="@drawable/circular_progress_bar"
+            android:indeterminate="true"
+            android:visibility="gone"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="200dp"
+            tools:visibility="gone" />
+
+    </RelativeLayout>
+</ScrollView>

@@ -49,7 +49,6 @@ public class HeroAbilityAdapter extends ArrayAdapter<Ability> {
         txtHeader.setText(abilities[position].name);
 
         TextView txtDesc = (TextView) rowView.findViewById(R.id.txtAbilityDescription);
-        txtDesc.setTypeface(overwatchfont);
 
         txtDesc.setText(abilities[position].description);
 

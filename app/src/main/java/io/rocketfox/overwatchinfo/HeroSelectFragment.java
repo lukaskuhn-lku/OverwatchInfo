@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
+import io.paperdb.Paper;
 import io.rocketfox.overwatchinfo.HTTPReq.AsyncResponseHeroData;
 import io.rocketfox.overwatchinfo.HTTPReq.HeroReq;
 import io.rocketfox.overwatchinfo.Objects.HeroData;
@@ -41,8 +42,7 @@ public class HeroSelectFragment extends Fragment implements AsyncResponseHeroDat
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
+        Paper.init(getContext());
     }
 
     @Override
@@ -50,11 +50,17 @@ public class HeroSelectFragment extends Fragment implements AsyncResponseHeroDat
         super.onViewCreated(view, savedInstanceState);
         heroSelect = (ListView) getView().findViewById(R.id.list_view_heroes);
         loadingBar = (ProgressBar) getView().findViewById(R.id.loadingBarSelect);
+
         try {
             loadingBar.setVisibility(View.VISIBLE);
            new HeroReq(this).execute();
         }catch(Exception e){
             e.printStackTrace();
+        }
+
+        HeroData data = Paper.book().read("HeroData");
+        if(data != null){
+            updateUI(data);
         }
     }
 
@@ -77,12 +83,17 @@ public class HeroSelectFragment extends Fragment implements AsyncResponseHeroDat
 
     @Override
     public void onLoadingDone(HeroData data) {
-        loadingBar.setVisibility(View.GONE);
-        heroData = data;
-        updateUI(heroData);
+        try {
+            updateUI(data);
+            Paper.book().write("HeroData", data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void updateUI(HeroData heroData) {
+        loadingBar.setVisibility(View.GONE);
+
         View v = getView();
 
         ArrayList<HeroItem> items = heroData.getData();

@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.paperdb.Paper;
 import io.rocketfox.overwatchinfo.HTTPReq.AsyncResponsePatchNotes;
 import io.rocketfox.overwatchinfo.HTTPReq.PatchNotesReq;
 import io.rocketfox.overwatchinfo.Objects.PatchNote;
@@ -39,6 +40,7 @@ public class PatchNotesFragment extends Fragment implements AsyncResponsePatchNo
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivity().setTitle("Patch Notes & Updates");
+        Paper.init(getContext());
     }
 
     @Override
@@ -63,6 +65,11 @@ public class PatchNotesFragment extends Fragment implements AsyncResponsePatchNo
 
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+        PatchNotes notes = Paper.book().read("PatchNotes");
+        if(notes != null)
+            updateUI(notes);
+
     }
 
     @Override
@@ -81,9 +88,7 @@ public class PatchNotesFragment extends Fragment implements AsyncResponsePatchNo
         super.onDetach();
     }
 
-
-    @Override
-    public void onLoadingNotesDone(PatchNotes notes) {
+    private void updateUI(PatchNotes notes){
         loadingBar.setVisibility(View.GONE);
         ArrayList<PatchNote> noteList = new ArrayList<>();
 
@@ -93,5 +98,15 @@ public class PatchNotesFragment extends Fragment implements AsyncResponsePatchNo
 
         mAdapter = new PatchNoteAdapter(noteList);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onLoadingNotesDone(PatchNotes notes) {
+       try{
+           updateUI(notes);
+           Paper.book().write("PatchNotes", notes);
+       }catch (Exception e){
+           e.printStackTrace();
+       }
     }
 }

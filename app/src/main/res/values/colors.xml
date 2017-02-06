@@ -4,6 +4,7 @@
     <color name="colorCardHeader">#5a5b5a</color>
     <color name="colorCardContent">#686868</color>
     <color name="colorPrimaryDark">#444544</color>
+    <color name="colorDarkG">#343634</color>
     <color name="colorAccent">#ffab2f</color>
     <color name="colorWhite">#ffffff</color>
 </resources>

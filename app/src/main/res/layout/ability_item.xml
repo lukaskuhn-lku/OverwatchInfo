@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:id="@+id/txtAbilityDescription"
             android:textColor="@color/colorWhite"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:layout_below="@+id/txtAbilityHeader"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />

@@ -2,11 +2,8 @@ package io.rocketfox.overwatchinfo;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,10 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
 import android.widget.TextView;
-
-import io.rocketfox.overwatchinfo.Objects.HeroItem;
 
 
 public class MainActivity extends AppCompatActivity
@@ -41,6 +35,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        navigationView.setItemIconTintList(null);
+
         drawer.setBackgroundResource(R.color.colorPrimary);
 
         View headerNav = navigationView.getHeaderView(0);
@@ -49,9 +45,9 @@ public class MainActivity extends AppCompatActivity
         txtMenu.setTypeface(overwatchfontCursive);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment fragment = HeroSelectFragment.newInstance();
+        Fragment fragment = NewsFragment.newInstance();
 
-        setTitle("Heroes");
+        setTitle("News");
 
         navigationView.getMenu().getItem(0).setChecked(true);
         fragmentManager.beginTransaction().replace(R.id.content_main, fragment).commit();
@@ -75,15 +71,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -97,11 +85,15 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-       if(id == R.id.nav_heroesselect)
+         if(id == R.id.nav_heroesselect)
            fragmentClass = HeroSelectFragment.class;
-        else if(id == R.id.nav_patchnotes)
+         else if(id == R.id.nav_patchnotes)
            fragmentClass = PatchNotesFragment.class;
-        else
+         else if(id == R.id.navNews)
+           fragmentClass = NewsFragment.class;
+         else if(id == R.id.nav_mapselect)
+           fragmentClass = MapsSelectFragment.class;
+         else
            fragmentClass = PatchNotesFragment.class;
 
         try {

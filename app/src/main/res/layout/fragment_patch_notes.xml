@@ -5,7 +5,6 @@
     tools:context="io.rocketfox.overwatchinfo.PatchNotesFragment"
     android:background="@color/colorPrimary">
 
-    <!-- TODO: Update blank fragment layout -->
     <ProgressBar
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="match_parent"
