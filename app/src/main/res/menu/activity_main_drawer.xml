@@ -2,9 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group >
         <item android:title="News"
-            android:id="@+id/navNews"
+            android:id="@+id/nav_news"
             android:icon="@drawable/newspaper"
             android:checkable="true" />
+        <item
+            android:id="@+id/nav_your_stats"
+            android:icon="@drawable/barschart"
+            android:title="Your Stats"
+            android:visible="false" />
     </group>
     <item android:title="Informations"
         android:id="@+id/Informations">

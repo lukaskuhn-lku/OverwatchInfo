@@ -86,13 +86,15 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
          if(id == R.id.nav_heroesselect)
-           fragmentClass = HeroSelectFragment.class;
+             fragmentClass = HeroSelectFragment.class;
          else if(id == R.id.nav_patchnotes)
-           fragmentClass = PatchNotesFragment.class;
-         else if(id == R.id.navNews)
-           fragmentClass = NewsFragment.class;
+              fragmentClass = PatchNotesFragment.class;
+         else if(id == R.id.nav_news)
+             fragmentClass = NewsFragment.class;
          else if(id == R.id.nav_mapselect)
-           fragmentClass = MapsSelectFragment.class;
+             fragmentClass = MapsSelectFragment.class;
+         else if(id == R.id.nav_your_stats)
+             fragmentClass = PlayerStatsFragment.class;
          else
            fragmentClass = PatchNotesFragment.class;
 

@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.crash.FirebaseCrash;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -58,31 +59,36 @@ public class NewsCardAdapter extends RecyclerView.Adapter<NewsCardAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        Typeface overwatchfont = Typeface.createFromAsset(context.getAssets(), "fonts/big_noodle_titling.ttf");
-        Typeface overwatchfontItalic = Typeface.createFromAsset(context.getAssets(), "fonts/big_noodle_titling_oblique.ttf");
-        holder.mTextViewTitle.setTypeface(overwatchfont);
-        holder.mTextViewTitle.setText(items.get(position).getTitle());
-        String imgRegex = "<[iI][mM][gG][^>]+[sS][rR][cC]\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>";
+        try {
+            Typeface overwatchfont = Typeface.createFromAsset(context.getAssets(), "fonts/big_noodle_titling.ttf");
+            Typeface overwatchfontItalic = Typeface.createFromAsset(context.getAssets(), "fonts/big_noodle_titling_oblique.ttf");
+            holder.mTextViewTitle.setTypeface(overwatchfont);
+            holder.mTextViewTitle.setText(items.get(position).getTitle());
+            String imgRegex = "<[iI][mM][gG][^>]+[sS][rR][cC]\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>";
 
-        holder.btnMore.setTypeface(overwatchfontItalic);
-        holder.btnMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(items.get(position).getLink()));
-                context.startActivity(intent);
-            }
-        });
+            holder.btnMore.setTypeface(overwatchfontItalic);
+            holder.btnMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(items.get(position).getLink()));
+                    context.startActivity(intent);
+                }
+            });
 
-        Pattern p = Pattern.compile(imgRegex);
-        Matcher m = p.matcher(items.get(position).getDescription());
-        if (m.find()) {
-            String imgSrc = m.group(1);
-            try {
-                Glide.with(context).load(imgSrc).into(holder.mImageViewHeader);
-                //holder.mImageViewHeader.setImageBitmap(new DownloadImageTask().execute(imgSrc).get());
-            }catch(Exception e){
-                e.printStackTrace();
+            Pattern p = Pattern.compile(imgRegex);
+            Matcher m = p.matcher(items.get(position).getDescription());
+            if (m.find()) {
+                String imgSrc = m.group(1);
+                try {
+                    Glide.with(context).load(imgSrc).into(holder.mImageViewHeader);
+                    //holder.mImageViewHeader.setImageBitmap(new DownloadImageTask().execute(imgSrc).get());
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
             }
+        }catch(Exception ex){
+            FirebaseCrash.report(ex);
         }
     }
 
